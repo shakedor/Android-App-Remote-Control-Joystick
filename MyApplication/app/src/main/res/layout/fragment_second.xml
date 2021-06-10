@@ -16,12 +16,82 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+            android:id="@+id/button_second"
+            android:text="@string/disconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PortText" />
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IPText"
+            app:layout_constraintBottom_toTopOf="@id/PortText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintVertical_bias="0.444"
+            android:textSize="26sp"
+            android:textColor="#00BCD4"
+            android:textStyle="bold"
+            android:fontFamily="@font/bubblegum_sans"
+            android:gravity="center"
+            android:layout_marginTop="50dp" />
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/PortText"
+
+            app:layout_constraintBottom_toTopOf="@id/button_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            android:textSize="26sp"
+            android:textColor="#00BCD4"
+            android:textStyle="bold"
+            android:fontFamily="@font/bubblegum_sans"
+            android:gravity="center"
+            android:layout_marginBottom="300dp" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.026"
+            android:layout_marginBottom="676dp"
+            app:icon="@drawable/abc_vector_test" />
+
+    <SeekBar
+            android:layout_width="172dp"
+            android:layout_height="25dp"
+            android:id="@+id/seekBar2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:max="2"
+            app:layout_constraintHorizontal_bias="0.497"
+            android:layout_marginBottom="404dp" />
+
+    <SeekBar
+            android:layout_width="172dp"
+            android:layout_height="25dp"
+            android:id="@+id/seekBar1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:max="3"
+            app:layout_constraintHorizontal_bias="0.497"
+            android:layout_marginBottom="352dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

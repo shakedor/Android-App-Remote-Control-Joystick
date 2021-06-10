@@ -7,22 +7,60 @@
     tools:context=".FirstFragment">
 
     <TextView
-        android:id="@+id/textview_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/textview_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_first_fragment"
+            app:layout_constraintBottom_toTopOf="@id/IPText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="34sp"
+            android:textColor="#00BCD4"
+            android:textStyle="bold"
+            android:gravity="center" />
 
     <Button
         android:id="@+id/button_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
+        android:text="@string/connect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintTop_toBottomOf="@id/PortText" />
+
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/IPText"
+            app:layout_constraintBottom_toTopOf="@id/PortText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="150dp"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintVertical_bias="0.058"
+            android:hint="@string/IP" />
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/PortText"
+            app:layout_constraintBottom_toTopOf="@id/button_first"
+            app:layout_constraintBottom_toBottomOf="@id/IPText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintVertical_bias="1.0"
+            android:hint="@string/Port" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
