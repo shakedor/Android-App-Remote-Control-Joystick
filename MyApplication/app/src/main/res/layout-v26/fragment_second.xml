@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SecondFragment">
+
+
+    <TextView
+            android:id="@+id/textview_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/button_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+            android:id="@+id/button_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disconnect"
+            android:translationY="50dp"
+            app:backgroundTint="@android:color/transparent"
+            android:textColor="@color/black"
+            app:strokeColor="#3F51B5"
+            app:strokeWidth="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PortText"
+            app:layout_constraintHorizontal_bias="0.498" />
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IPText"
+            app:layout_constraintBottom_toTopOf="@id/PortText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintVertical_bias="0.444"
+            android:textSize="26sp"
+            android:textColor="#00BCD4"
+            android:textStyle="bold"
+            android:fontFamily="@font/bubblegum_sans"
+            android:gravity="center"
+            android:layout_marginTop="50dp" />
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/PortText"
+
+            app:layout_constraintBottom_toTopOf="@id/button_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            android:textSize="26sp"
+            android:textColor="#00BCD4"
+            android:textStyle="bold"
+            android:fontFamily="@font/bubblegum_sans"
+            android:gravity="center"
+            android:layout_marginBottom="300dp" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="664dp"
+            android:text="@string/back"
+            app:icon="@drawable/abc_vector_test"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="339dp"
+            android:layout_height="41dp"
+            android:layout_marginBottom="364dp"
+            android:max="100"
+            android:rotation="-90"
+            android:translationX="-130dp"
+            android:translationY="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="341dp"
+            android:layout_height="71dp"
+            android:layout_marginBottom="104dp"
+            android:max="200"
+            android:min="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+            android:id="@+id/outer"
+            android:layout_width="273dp"
+            android:layout_height="296dp"
+            android:src="@drawable/out"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498"
+            tools:ignore="ContentDescription" />
+
+
+
+    <ImageView
+            android:id="@+id/inner"
+            android:layout_width="169dp"
+            android:layout_height="202dp"
+            android:src="@drawable/mid"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499"
+            tools:ignore="ContentDescription" />
+
+    <TextView
+            android:text="Rudder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:fontFamily="@font/bubblegum_sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/outer"
+            app:layout_constraintTop_toTopOf="@id/seekBar1"
+            android:layout_marginTop="100dp"
+            app:layout_constraintHorizontal_bias="0.498"
+            android:textSize="20sp" />
+
+    <TextView
+            android:text="Throttle"
+            android:layout_width="71dp"
+            android:layout_height="139dp"
+            android:id="@+id/textView2"
+            android:rotation="-90"
+            android:fontFamily="@font/bubblegum_sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="224dp"
+            app:layout_constraintHorizontal_bias="0.102"
+            android:textSize="20sp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
