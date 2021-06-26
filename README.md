@@ -2,7 +2,7 @@
 The android app we present using the MVVM architecture, allows the user to connent to the Flight-Gear app in the computer and fly the plane from the application we built.
 
 # Folders and files
-In the GIT folder of the Android-App-Remote-Control-Joystick there is the 'MyApplication' folder that containt all the files from the project we built. In addition, there is a presentation of the project (that we present in the video below) and a UML diagram of the project.
+In the GIT folder of the Android-App-Remote-Control-Joystick there is the 'MyApplication' folder that contains all the files from the project we built. In addition, there is a presentation of the project (that we present in the video below) and a UML diagram of the project.
 
 # Prerequests
 In order to connent to the Flight-Gear application you will ask to enter an IP adress and a port. The IP adress is personal to the computer you are using (in the video we show how to find it), and for the port you need to go to the settings of the Flight-Gear app and under the 'Additional Settings' add the
