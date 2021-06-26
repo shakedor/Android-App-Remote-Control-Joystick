@@ -1,13 +1,5 @@
 package com.example.myapplication
 
-import android.content.ClipData
-import android.content.ContentValues
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import java.util.*
 
@@ -20,38 +12,34 @@ class JoystickViewModel : ViewModel(),IMVVMObserver, IMVVMObservable {
     private val model = FlightModel()
 
     init {
-        model.add(this);
+        model.add(this)
     }
 
-
-
+    // notify the model when one of the property changed
     override fun update(property: String, value: Double) {
         if(property == "Aileron" || property == "Elevator" ||property == "Rudder" ||property == "Throttle"){
             model.update(property,value)
         }
         if(property == "Model_Connect"){
-            //if(value == 0.0){
             // failed to connect!
-            sendUpdateEvent("VM_Connect", value);
-            //}
+            sendUpdateEvent("VM_Connect", value)
         }else if(property == "Connect"){
-            sendData();
+            sendData()
         }
         else if(property == "Disconnect"){
-            model.stop();
+            model.stop()
         }
         else if(property == "Model_Send"){
             if(value == 0.0){
                 // failed to send data to server
-                sendUpdateEvent("VM_Send", 0.0);
+                sendUpdateEvent("VM_Send", 0.0)
 
             }
         }
 
     }
 
-
-
+    // update the text boxes with the given ip and port
     fun update(property: String, text: String) {
 
         if(property == "IP"){
@@ -63,8 +51,6 @@ class JoystickViewModel : ViewModel(),IMVVMObserver, IMVVMObservable {
 
     }
 
-
-
     fun getIP(): String {
         return IP
     }
@@ -73,11 +59,11 @@ class JoystickViewModel : ViewModel(),IMVVMObserver, IMVVMObservable {
         return Port
     }
 
+    // send the data of the ip and port to the model
     private fun sendData(){
-
-        model.setIP(IP);
-        model.setPort(Port);
-        model.connect();
+        model.setIP(IP)
+        model.setPort(Port)
+        model.connect()
 
     }
 

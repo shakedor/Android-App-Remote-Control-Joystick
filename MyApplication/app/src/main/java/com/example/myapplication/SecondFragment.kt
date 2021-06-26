@@ -1,25 +1,18 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.app.AlertDialog
-import android.content.ContentValues.TAG
-import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentSecondBinding
-import java.lang.Math.*
-import kotlin.math.sqrt
 
 
 /**
@@ -28,12 +21,10 @@ import kotlin.math.sqrt
 class SecondFragment : Fragment(),SeekBar.OnSeekBarChangeListener, IMVVMObserver {
 
     private val vm: JoystickViewModel by activityViewModels()
-    private var seekbarView: SeekBar? = null
 
     private var _binding: FragmentSecondBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -46,10 +37,6 @@ class SecondFragment : Fragment(),SeekBar.OnSeekBarChangeListener, IMVVMObserver
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,20 +50,18 @@ class SecondFragment : Fragment(),SeekBar.OnSeekBarChangeListener, IMVVMObserver
 
         binding.seekBar1.setOnSeekBarChangeListener(this)
 
-        var listener = View.OnTouchListener(function = {view, motionEvent ->
+        val listener = View.OnTouchListener(function = { view, motionEvent ->
 
 
             if (motionEvent.action == MotionEvent.ACTION_MOVE) {
                 // calculate the next move
-                var h = motionEvent.rawY - view.height/2
-                var w = motionEvent.rawX - view.width/2
+                val h = motionEvent.rawY - view.height/2
+                val w = motionEvent.rawX - view.width/2
                 // 420 to each direction
-                var minX = 75
-                var maxX = 505
-                var minY = 330
-                var maxY = 750
-
-
+                val minX = 75
+                val maxX = 505
+                val minY = 330
+                val maxY = 750
 
 
                 // check if the move is inside the joystick
@@ -103,21 +88,17 @@ class SecondFragment : Fragment(),SeekBar.OnSeekBarChangeListener, IMVVMObserver
                     }
                 }
 
-
-
                 // aileron
-                var rangeA = maxX - minX
-                var middleA = minX + (rangeA/2)
-                var valueA = (view.x - middleA) / (rangeA/2)
+                val rangeA = maxX - minX
+                val middleA = minX + (rangeA/2)
+                val valueA = (view.x - middleA) / (rangeA/2)
                 vm.update("Aileron", valueA.toDouble())
 
                 // elevator
-                var rangeE = maxY - minY
-                var middleE = minY + (rangeE/2)
-                var valueE = ((view.y - middleE) / (rangeE/2)) * -1
+                val rangeE = maxY - minY
+                val middleE = minY + (rangeE/2)
+                val valueE = ((view.y - middleE) / (rangeE/2)) * -1
                 vm.update("Elevator", valueE.toDouble())
-
-
             }
 
             true
@@ -157,7 +138,6 @@ class SecondFragment : Fragment(),SeekBar.OnSeekBarChangeListener, IMVVMObserver
     }
 
 
-
     override fun onStartTrackingTouch(seekBar: SeekBar?) {
 
     }
@@ -169,30 +149,22 @@ class SecondFragment : Fragment(),SeekBar.OnSeekBarChangeListener, IMVVMObserver
     override fun update(message: String, value: Double) {
         if(message == "Model_Send"){
             if(value == 0.0){
-
                 //alert
-
                 val builder = AlertDialog.Builder(activity)
                 builder.setTitle("Failed to send data")
                 builder.setMessage("Please reconnect.")
                 //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                builder.setPositiveButton(android.R.string.yes) { _, _ ->
                     Toast.makeText(activity,
                         android.R.string.yes, Toast.LENGTH_SHORT).show()
                 }
 
-                builder.setNegativeButton(android.R.string.no) { dialog, which ->
+                builder.setNegativeButton(android.R.string.no) { _, _ ->
                     Toast.makeText(activity,
                         android.R.string.no, Toast.LENGTH_SHORT).show()
                 }
 
-/*
-                builder.setNeutralButton("Maybe") { dialog, which ->
-                    Toast.makeText(activity,
-                        "Maybe", Toast.LENGTH_SHORT).show()
-                }
-                 */
                 builder.show()
             }
         }

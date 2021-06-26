@@ -1,10 +1,5 @@
 package com.example.myapplication
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
-import android.nfc.Tag
-import android.util.Log
-import android.widget.TextView
 import java.io.OutputStream
 import java.net.Socket
 import java.util.*
@@ -16,90 +11,97 @@ class FlightModel : IMVVMObservable{
 
     private var IP = ""
     private var Port = ""
-    private lateinit var fg: Socket;
-    private lateinit var out: OutputStream;
-    private var connected = 0;
+    private lateinit var fg: Socket
+    private lateinit var out: OutputStream
+    private var connected = 0
 
 
     fun setIP(ip: String){
-        IP = ip;
+        IP = ip
     }
     fun setPort(port : String){
-        Port = port;
+        Port = port
     }
 
-
-
+    // connect the app with the flight gear
     fun connect(){
+        // variable that will help to verify if the app connected to the FG in the thread
+        var block = 1
         Thread {
 
             try{
+                // create a socket
                 fg = Socket(IP, Port.toInt())
 
+                // get the output of the socket
                 out = fg.getOutputStream()
 
                 if (fg.isConnected) {
 
-                    connected = 1;
+                    connected = 1
 
                 }
             }
             catch (e: Exception){
-
                 try {
-                    fg.close();
+                    fg.close()
                 }
                 catch(closeE: Exception){ }
-
             }
+            block = 0
+        }.start()
 
-        }.start();
+        // waits for the thread to change the 'connected' variable
+        while(block == 1);
 
         if(connected == 0){
-            sendUpdateEvent("Model_Connect", 0.0);
+            sendUpdateEvent("Model_Connect", 0.0)
 
         }
         else{
-            sendUpdateEvent("Model_Connect", 1.0);
+            sendUpdateEvent("Model_Connect", 1.0)
 
         }
 
     }
 
-
+    // receive the new value of the property and notify
     fun update(property: String, value: Double){
 
         if (connected == 0){
-            sendUpdateEvent("Model_Send", 0.0);
+            sendUpdateEvent("Model_Send", 0.0)
 
-            return;
+            return
         }
-        var sendMessage = "set /controls/";
+        var sendMessage = "set /controls/"
 
-        if(property == "Aileron"){
-            sendMessage += "flight/aileron " ;
-        }
-        else if(property == "Elevator"){
-            sendMessage += "flight/elevator " ;
+        // find which property has changed
+        when (property) {
+            "Aileron" -> {
+                sendMessage += "flight/aileron "
+            }
+            "Elevator" -> {
+                sendMessage += "flight/elevator "
 
-        }
-        else if(property == "Rudder"){
-            sendMessage += "flight/rudder " ;
+            }
+            "Rudder" -> {
+                sendMessage += "flight/rudder "
 
-        }
-        else if(property == "Throttle"){
-            sendMessage += "/engines/current-engine/throttle " ;
+            }
+            "Throttle" -> {
+                sendMessage += "/engines/current-engine/throttle "
 
+            }
         }
-        sendMessage += value.toString() + "\r\n";
+        sendMessage += value.toString() + "\r\n"
 
         thread{
             try {
-                out.write(sendMessage.toByteArray());
-                out.flush();
+                out.write(sendMessage.toByteArray())
+                out.flush()
             }
             catch (e : Exception){
-                sendUpdateEvent("Model_Send", 0.0);
+                sendUpdateEvent("Model_Send", 0.0)
             }
 
         }
@@ -108,7 +110,7 @@ class FlightModel : IMVVMObservable{
 
     fun stop(){
         // disconnect
-        connected = 0;
+        connected = 0
         try{
             fg.close()
         }
