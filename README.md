@@ -12,4 +12,4 @@ line: "--telnet=socket,in,10,127.0.0.1,6400,tcp" (this means the port we are usi
 https://github.com/shakedor/Android-App-Remote-Control-Joystick/blob/main/Android-App-Remote-Control-Joystick-UML.pdf
 
 # Link to the video
-https://youtu.be/6G8E4d23nCE
+https://youtu.be/t9wHtNPfMBc
