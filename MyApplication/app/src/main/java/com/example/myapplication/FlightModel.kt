@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
+import android.nfc.Tag
 import android.util.Log
 import android.widget.TextView
 import java.io.OutputStream
@@ -31,30 +33,45 @@ class FlightModel : IMVVMObservable{
     fun connect(){
         Thread {
 
+            try{
+                fg = Socket(IP, Port.toInt())
 
-            // put try and catch!!
-            // if did not work - send event to viewmodel.
-            fg = Socket(IP, Port.toInt())
+                out = fg.getOutputStream()
 
+                if (fg.isConnected) {
 
-            out = fg.getOutputStream()
+                    connected = 1;
 
-            if (!fg.isConnected) {
-
-                Log.i(ContentValues.TAG, "not connected");
-                sendUpdateEvent("Model_Connect", 0.0);
-
-            } else {
-                Log.i(ContentValues.TAG, "connected");
-                connected = 1;
+                }
             }
+            catch (e: Exception){
+
+                try {
+                    fg.close();
+                }
+                catch(closeE: Exception){ }
+
+            }
+
         }.start();
 
+        if(connected == 0){
+            sendUpdateEvent("Model_Connect", 0.0);
+
+        }
+        else{
+            sendUpdateEvent("Model_Connect", 1.0);
+
+        }
+
     }
+
 
     fun update(property: String, value: Double){
 
         if (connected == 0){
+            sendUpdateEvent("Model_Send", 0.0);
+
             return;
         }
         var sendMessage = "set /controls/";
@@ -77,16 +94,25 @@ class FlightModel : IMVVMObservable{
         sendMessage += value.toString() + "\r\n";
 
         thread{
-            // add try and catch!!
-            out.write(sendMessage.toByteArray());
-            out.flush();
+            try {
+                out.write(sendMessage.toByteArray());
+                out.flush();
+            }
+            catch (e : Exception){
+                sendUpdateEvent("Model_Send", 0.0);
+            }
+
         }
 
     }
 
     fun stop(){
         // disconnect
-        fg.close();
+        connected = 0;
+        try{
+            fg.close()
+        }
+        catch (e: java.lang.Exception){ }
     }
 
 }

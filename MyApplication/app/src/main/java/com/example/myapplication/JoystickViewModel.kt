@@ -11,7 +11,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import java.util.*
 
-class JoystickViewModel : ViewModel(),IMVVMObserver {
+class JoystickViewModel : ViewModel(),IMVVMObserver, IMVVMObservable {
+
+    override val observers: ArrayList<IMVVMObserver> = ArrayList()
+
     private var IP = ""
     private var Port = ""
     private val model = FlightModel()
@@ -27,14 +30,22 @@ class JoystickViewModel : ViewModel(),IMVVMObserver {
             model.update(property,value)
         }
         if(property == "Model_Connect"){
-            if(value == 0.0){
-                // failed to connect!
-            }
+            //if(value == 0.0){
+            // failed to connect!
+            sendUpdateEvent("VM_Connect", value);
+            //}
         }else if(property == "Connect"){
             sendData();
         }
         else if(property == "Disconnect"){
             model.stop();
+        }
+        else if(property == "Model_Send"){
+            if(value == 0.0){
+                // failed to send data to server
+                sendUpdateEvent("VM_Send", 0.0);
+
+            }
         }
 
     }
